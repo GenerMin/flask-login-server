@@ -14,6 +14,3 @@ def login():
         return jsonify(status='success', message='Login Success')
     else:
         return jsonify(status='fail', message='Login Failed')
-
-if __name__ == '__main__':
-    app.run(debug=True, port=5000)
