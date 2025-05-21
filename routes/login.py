@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from ..services.auth_service import verify_user
+from services.auth_service import verify_user
 
 # 이 파일은 login 관련 기능을 모은 블루프린트다!
 login_bp = Blueprint('login', __name__)
