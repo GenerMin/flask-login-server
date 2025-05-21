@@ -1,16 +1,15 @@
-from flask import Flask, request, jsonify
+from flask import Flask
+from routes.login import login_bp  # Blueprint 가져오기
 
 app = Flask(__name__)
 
-@app.route('/login', methods=['POST'])
-def login():
-    data = request.get_json()
-    user_id = data.get('id')
-    user_pw = data.get('pw')
+# Blueprint 등록
+app.register_blueprint(login_bp)
 
-    print(f"Received ID: {user_id}, PW: {user_pw}")
+# 로컬에서 실행할 때만 작동 (개발용)
+if __name__ == "__main__":
+    app.run(debug=True)
 
-    if user_id == 'admin' and user_pw == '1234':
-        return jsonify(status='success', message='Login Success')
-    else:
-        return jsonify(status='fail', message='Login Failed')
+# Render에서 Gunicorn으로 실행할 때 사용
+if __name__ != "__main__":
+    application = app
